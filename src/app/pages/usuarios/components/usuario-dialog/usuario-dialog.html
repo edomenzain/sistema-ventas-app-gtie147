@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>Usuarios</h1>
+<mat-dialog-content>
+    {{ data | json }}
+    <form [formGroup]="userForm" (submit)="onSubmit()">
+        <mat-form-field class="full-width mt-2" appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input type="text" formControlName="nombre" matInput>
+            <mat-error>
+                {{ baseForm.getErrorMessage(userForm.get('nombre')) }}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width mt-2" appearance="outline">
+            <mat-label>Apellidos</mat-label>
+            <input type="text" formControlName="apellidos" matInput>
+            <mat-error>
+                {{ baseForm.getErrorMessage(userForm.get('apellidos')) }}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width mt-2" appearance="outline">
+            <mat-label>Username</mat-label>
+            <input type="text" formControlName="username" matInput>
+            <mat-error>
+                {{ baseForm.getErrorMessage(userForm.get('username')) }}
+            </mat-error>
+        </mat-form-field>
+
+        <div class="row">
+            <div class="col text-center">
+                <button type="submit" matButton="filled" class="me-2">
+                    Guardar
+                </button>
+                <button type="reset" matButton="text" class="me-2">
+                    Limpiar
+                </button>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button matButton="tonal" mat-dialog-close>
+        <mat-icon>close</mat-icon> Cerrar
+    </button>
+</mat-dialog-actions>

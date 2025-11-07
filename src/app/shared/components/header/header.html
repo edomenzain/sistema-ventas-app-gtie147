@@ -1,0 +1,25 @@
+<mat-toolbar class="shadow-sm mb-4 bg-secondary-subtle">
+    <a routerLink="/home">My App</a>
+    <span class="spacer"></span>
+    <!-- <button mat-button>Nombre de Usuario</button> -->
+    <button *ngIf="!isLogged else viewLogout" matButton (click)="onNavigate()">
+        Iniciar Sesión
+    </button>
+</mat-toolbar>
+
+<ng-template #viewLogout>
+    <button matButton [matMenuTriggerFor]="lista">
+        {{ data.name + ' ' + data.lastname }}
+        <mat-icon>expand_more</mat-icon>
+    </button>
+    <mat-menu #lista="matMenu">
+        <button mat-menu-item>
+            <mat-icon>settings</mat-icon>
+            Perfil
+        </button>
+        <button mat-menu-item (click)="onLogout()">
+            <mat-icon>logout</mat-icon>
+            Cerrar Sesión
+        </button>
+    </mat-menu>
+</ng-template>

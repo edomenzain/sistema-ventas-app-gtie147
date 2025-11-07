@@ -1,0 +1,55 @@
+<div class="container">
+    <!-- Titulo de la pantalla -->
+    <div class="row">
+        <div class="col">
+            <h1>Usuarios</h1>
+        </div>
+    </div>
+
+    <!-- Boton para agregar un usuario -->
+    <div class="row">
+        <div class="col text-end">
+            <button mat-flat-button color="primary" (click)="onOpenModal()">
+                <mat-icon>add</mat-icon>
+                Agregar
+            </button>
+        </div>
+    </div>
+
+    <!-- Tabla con los usuarios en el sistema -->
+    <div class="row mt-3">
+        <div class="col responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Nombre de Usuario</th>
+                        <th colspan="2" class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usuario of usuarios; index as i">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ usuario.nombre }}</td>
+                        <td>{{ usuario.apellidos }}</td>
+                        <td>{{ usuario.username }}</td>
+                        <td class="text-center">
+                            <button type="button" matButton="tonal" (click)="onOpenModal(usuario)">
+                                <mat-icon>edit</mat-icon> Editar
+                            </button>
+                        </td>
+                        <td class="text-center">
+                            <button type="button" matButton="tonal">
+                                <mat-icon>delete</mat-icon> Eliminar
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
