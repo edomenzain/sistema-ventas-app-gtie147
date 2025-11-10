@@ -1,7 +1,34 @@
 <mat-toolbar class="shadow-sm mb-4 bg-secondary-subtle">
     <a routerLink="/home">My App</a>
+    
+    
+    <ng-container *ngIf="isLogged">
+        <div class="d-lg-block w-100">
+            <ul class="nav nav-pills justify-content-center">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" 
+                        data-bs-toggle="dropdown"
+                        role="button"
+                        aria-expanded="false">
+                        Administrador
+                    </a>
+                    <ul class="dropdown-menu">
+                        <a href="#" class="dropdown-item">
+                            <mat-icon>group</mat-icon>
+                            Usuarios
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <mat-icon>inventory_2</mat-icon>
+                            Productos
+                        </a>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </ng-container>
+
     <span class="spacer"></span>
-    <!-- <button mat-button>Nombre de Usuario</button> -->
+
     <button *ngIf="!isLogged else viewLogout" matButton (click)="onNavigate()">
         Iniciar Sesión
     </button>

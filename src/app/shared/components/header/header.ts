@@ -13,6 +13,7 @@ export class Header implements OnInit {
 
   isLogged = false;
   data: any = {};
+  menus: any[] = [];
   private destroy$ = new Subject<any>();
   constructor(private router: Router, 
               private authSvc: AuthService) { }
@@ -30,9 +31,31 @@ export class Header implements OnInit {
     this.authSvc.tokenData$
       .pipe(takeUntil(this.destroy$))
       .subscribe( (data) => {
-        console.log(data);
         this.data = data;
+        this.generarMenu();
       });
+  }
+
+  private generarMenu() {
+    this.menus = [];
+    if (this.data!.role == 'admin') {
+      var menu = {
+        nombre: 'Administrador',
+        submenu: [
+          {
+            icon: 'group',
+            nombre: 'Usuarios',
+            ruta: '../'
+          },
+          {
+            icon: 'inventory_2',
+            nombre: 'Productos',
+            ruta: '../'
+          }
+        ]
+      }
+      this.menus.push(menu);
+    }
   }
 
   onNavigate() {
