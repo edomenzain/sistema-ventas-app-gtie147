@@ -54,6 +54,7 @@ export class Header implements OnInit {
           }
         ]
       }
+      
       this.menus.push(menu);
     }
   }

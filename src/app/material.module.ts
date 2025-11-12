@@ -8,6 +8,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
 
 const myModules: any = [
     MatButtonModule,
@@ -18,7 +21,10 @@ const myModules: any = [
     MatInputModule,
     MatFormFieldModule,
     MatDialogModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSidenavModule,
+    MatDividerModule,
+    MatListModule
 ];
 
 @NgModule({

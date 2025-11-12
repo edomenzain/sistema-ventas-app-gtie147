@@ -1,3 +1,34 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+
+<mat-drawer-container style="height: 100%; overflow: visible;">
+    <mat-drawer 
+        mode="side" 
+        [opened]="isLogged" 
+        class="shadow"
+        style="width: 20%;">
+        @if (data) {
+            <div align="center" class="mt-3">
+                <h4>Bienvenido(a) {{ data.name + ' ' + data.lastname }}</h4>
+            </div>
+        }
+
+        @for(menu of menus; track menu) {
+            <h6 class="ps-3 pt-3">{{ menu.nombre }}</h6>
+
+            <mat-selection-list role="list">
+                @for(submenu of menu.submenu; track submenu) {
+                    <mat-list-item role="listitem" routerLink="{{submenu.ruta}}">
+                        <mat-icon>{{ submenu.icon }}</mat-icon>
+                        {{submenu.nombre}}
+                    </mat-list-item>
+                }
+            </mat-selection-list>
+        }
+        
+    </mat-drawer>
+
+    <mat-drawer-content>
+        <app-header></app-header>
+        <router-outlet></router-outlet>
+        <app-footer></app-footer>
+    </mat-drawer-content>
+</mat-drawer-container>
