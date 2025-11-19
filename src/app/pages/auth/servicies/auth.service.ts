@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   get tokenValue() {
-    return this.tokenData.getValue();
+    return this.token.getValue();
   }
 
   get tokenData$(): Observable<any> {

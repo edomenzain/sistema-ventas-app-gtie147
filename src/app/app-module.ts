@@ -6,7 +6,8 @@ import { App } from './app';
 import { Header } from './shared/components/header/header';
 import { Footer } from './shared/components/footer/footer';
 import { MaterialModule } from './material.module';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { tokenInterceptor } from './shared/interceptors/token-interceptor';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import { provideHttpClient } from '@angular/common/http';
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideClientHydration(),
-    provideHttpClient()
+    provideHttpClient(
+      withInterceptors([tokenInterceptor])
+    )
   ],
   bootstrap: [App]
 })

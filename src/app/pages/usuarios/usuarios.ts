@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../shared/utils/models/usuario.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { UsuarioDialog } from './components/usuario-dialog/usuario-dialog';
+import { UsuarioService } from './services/usuario.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -9,9 +10,10 @@ import { UsuarioDialog } from './components/usuario-dialog/usuario-dialog';
   templateUrl: './usuarios.html',
   styleUrl: './usuarios.scss'
 })
-export class Usuarios {
+export class Usuarios implements OnInit {
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog,
+              private usuarioSvc: UsuarioService) {}
 
   usuarios: Usuario[] = [
     { 
@@ -40,6 +42,12 @@ export class Usuarios {
     },
   ]
 
+  ngOnInit(): void {
+    this.usuarioSvc.listarUsuarios().subscribe( (usuarios) => {
+      console.log(usuarios);
+    });
+  }
+
   onOpenModal(usuario: any = {}) {
     const dialogRef = this.dialog.open(UsuarioDialog, {
       width: '80%', 
@@ -54,3 +62,8 @@ export class Usuarios {
   }
 
 }
+
+//! ng g s pages/usuarios/services/usuario.service
+
+//! AGREGAR INTERCEPTOR
+//! ng g interceptor shared/interceptors/token

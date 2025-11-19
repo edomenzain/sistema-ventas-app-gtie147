@@ -7,8 +7,11 @@
         style="width: 20%;">
         @if (data) {
             <div align="center" class="mt-3">
+                <img height="100px" width="100px"  class="m-2" style="border-radius: 50%;"
+                    src="https://material.angular.dev/assets/img/examples/shiba1.jpg">
                 <h4>Bienvenido(a) {{ data.name + ' ' + data.lastname }}</h4>
             </div>
+            <hr>
         }
 
         @for(menu of menus; track menu) {
