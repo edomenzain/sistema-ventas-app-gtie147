@@ -4,17 +4,17 @@
     <form [formGroup]="userForm" (submit)="onSubmit()">
         <mat-form-field class="full-width mt-2" appearance="outline">
             <mat-label>Nombre</mat-label>
-            <input type="text" formControlName="nombre" matInput>
+            <input type="text" formControlName="name" matInput>
             <mat-error>
-                {{ baseForm.getErrorMessage(userForm.get('nombre')) }}
+                {{ baseForm.getErrorMessage(userForm.get('name')) }}
             </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width mt-2" appearance="outline">
             <mat-label>Apellidos</mat-label>
-            <input type="text" formControlName="apellidos" matInput>
+            <input type="text" formControlName="lastname" matInput>
             <mat-error>
-                {{ baseForm.getErrorMessage(userForm.get('apellidos')) }}
+                {{ baseForm.getErrorMessage(userForm.get('lastname')) }}
             </mat-error>
         </mat-form-field>
 
@@ -23,6 +23,17 @@
             <input type="text" formControlName="username" matInput>
             <mat-error>
                 {{ baseForm.getErrorMessage(userForm.get('username')) }}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width mt-2" appearance="outline">
+            <mat-label>Rol Asignado</mat-label>
+            <mat-select formControlName="role">
+                <mat-option value="admin">Administrador</mat-option>
+                <mat-option value="ventas">Ventas</mat-option>
+            </mat-select>
+            <mat-error>
+                {{ baseForm.getErrorMessage(userForm.get('role')) }}
             </mat-error>
         </mat-form-field>
 

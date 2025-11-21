@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../../shared/utils/models/usuario.interface';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UsuarioDialog } from './components/usuario-dialog/usuario-dialog';
 import { UsuarioService } from './services/usuario.service';
+import { User } from '../../shared/models/user.interface';
 
 @Component({
   selector: 'app-usuarios',
@@ -13,38 +13,19 @@ import { UsuarioService } from './services/usuario.service';
 export class Usuarios implements OnInit {
 
   constructor(private dialog: MatDialog,
-              private usuarioSvc: UsuarioService) {}
+              private usuarioSvc: UsuarioService,
+              private cdr: ChangeDetectorRef) {}
 
-  usuarios: Usuario[] = [
-    { 
-      id: 1, 
-      nombre: 'Jose', 
-      apellidos: 'Mendez', 
-      username: 'JOSE', 
-      fechaCreacion: new Date(), 
-      estatus: true 
-    },
-    { 
-      id: 2, 
-      nombre: 'Maria', 
-      apellidos: 'Fernandez', 
-      username: 'maria', 
-      fechaCreacion: new Date(), 
-      estatus: true 
-    },
-    { 
-      id: 4, 
-      nombre: 'Pedro', 
-      apellidos: 'Gonzalez', 
-      username: 'pedro', 
-      fechaCreacion: new Date(), 
-      estatus: false
-    },
-  ]
+  usuarios: User[] = []
 
   ngOnInit(): void {
+    this.listar();
+  }
+
+  listar() {
     this.usuarioSvc.listarUsuarios().subscribe( (usuarios) => {
-      console.log(usuarios);
+      this.usuarios = usuarios;
+      this.cdr.detectChanges();
     });
   }
 
@@ -57,7 +38,10 @@ export class Usuarios implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe( (result) => {
-      console.log(`Se cerro el modal: ${result}`);
+      if (result) {
+        this.listar();
+        alert("Los datos se guardaron correctamente");
+      }
     });
   }
 

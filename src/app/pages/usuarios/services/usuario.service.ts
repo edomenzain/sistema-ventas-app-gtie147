@@ -23,6 +23,13 @@ export class UsuarioService {
       );
   }
 
+  insertarUsuario(user: User) {
+    return this.http.post<User>(`${ environment.BASE_URL}/user`, user,
+      { headers : {"requireToken" : "true"}}).pipe(
+        catchError( (error) => this.handlerError(error) )
+      );
+  }
+
   handlerError(error: any): Observable<never> {
     let errorMessage = 'Ocurrio un error';
     if (error) {

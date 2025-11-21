@@ -61,6 +61,23 @@ export class App implements OnInit {
       }
       
       this.menus.push(menu);
+    } else if (this.data && this.data.role == 'ventas') {
+      var menu = {
+        nombre: 'Ventas',
+        submenu: [
+          {
+            icon: 'inventory_2',
+            nombre: 'Productos',
+            ruta: 'home'
+          },
+          {
+            icon: 'reports',
+            nombre: 'Reportes',
+            ruta: 'home'
+          }
+        ]
+      }
+      this.menus.push(menu);
     }
   }
 }

@@ -22,30 +22,40 @@
             <table class="table table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th>No.</th>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Nombre de Usuario</th>
+                        <th class="text-center">No.</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Apellidos</th>
+                        <th class="text-center">Nombre de Usuario</th>
+                        <th class="text-center">fecha de Registro</th>
                         <th colspan="2" class="text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let usuario of usuarios; index as i">
-                        <td>{{ i + 1 }}</td>
-                        <td>{{ usuario.nombre }}</td>
-                        <td>{{ usuario.apellidos }}</td>
-                        <td>{{ usuario.username }}</td>
-                        <td class="text-center">
-                            <button type="button" matButton="tonal" (click)="onOpenModal(usuario)">
-                                <mat-icon>edit</mat-icon> Editar
-                            </button>
-                        </td>
-                        <td class="text-center">
-                            <button type="button" matButton="tonal">
-                                <mat-icon>delete</mat-icon> Eliminar
-                            </button>
-                        </td>
-                    </tr>
+                    @for(usuario of usuarios; track usuario.id; let i = $index) {
+                        <tr>
+                            <td class="text-center">{{ i + 1 }}</td>
+                            <td>{{ usuario.name }}</td>
+                            <td>{{ usuario.lastname }}</td>
+                            <td class="text-center">{{ usuario.username }}</td>
+                            <td class="text-center">{{ usuario.created_at | date: 'dd/MM/yyyy' }}</td>
+                            <td class="text-center">
+                                <button type="button" matButton="tonal" (click)="onOpenModal(usuario)">
+                                    <mat-icon>edit</mat-icon> Editar
+                                </button>
+                            </td>
+                            <td class="text-center">
+                                <button type="button" matButton="tonal">
+                                    <mat-icon>delete</mat-icon> Eliminar
+                                </button>
+                            </td>
+                        </tr>
+                    } @empty {
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                No hay datos
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
