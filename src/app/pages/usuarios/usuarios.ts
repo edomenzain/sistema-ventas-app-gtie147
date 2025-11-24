@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UsuarioDialog } from './components/usuario-dialog/usuario-dialog';
 import { UsuarioService } from './services/usuario.service';
 import { User } from '../../shared/models/user.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-usuarios',
@@ -40,7 +41,12 @@ export class Usuarios implements OnInit {
     dialogRef.afterClosed().subscribe( (result) => {
       if (result) {
         this.listar();
-        alert("Los datos se guardaron correctamente");
+        Swal.fire({
+          title: '',
+          text: 'Los datos se guardaron correctamente',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
       }
     });
   }
