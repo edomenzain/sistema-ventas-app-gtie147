@@ -51,6 +51,21 @@ export class Usuarios implements OnInit {
     });
   }
 
+  eliminarUsuario(id: number) {
+    Swal.fire({
+      title: "",
+      text: "¿Realmente quieres eliminar el registro?",
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: "Si",
+      denyButtonText: `No`
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // TODO: Llamar la API para eliminar el registro
+      }
+    });
+  }
+
 }
 
 //! ng g s pages/usuarios/services/usuario.service

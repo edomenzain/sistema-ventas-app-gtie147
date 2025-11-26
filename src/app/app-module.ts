@@ -8,6 +8,8 @@ import { Footer } from './shared/components/footer/footer';
 import { MaterialModule } from './material.module';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { tokenInterceptor } from './shared/interceptors/token-interceptor';
+import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+import { loadingInterceptor } from './shared/interceptors/loading-interceptor';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,11 @@ import { tokenInterceptor } from './shared/interceptors/token-interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule.forRoot({ 
+      showForeground: true,
+      minTime: 500,
+    }),
     MaterialModule
   ],
   providers: [
@@ -25,7 +32,7 @@ import { tokenInterceptor } from './shared/interceptors/token-interceptor';
     provideZonelessChangeDetection(),
     provideClientHydration(),
     provideHttpClient(
-      withInterceptors([tokenInterceptor])
+      withInterceptors([tokenInterceptor, loadingInterceptor])
     )
   ],
   bootstrap: [App]
